@@ -1,0 +1,59 @@
+{
+  "_help": [
+    "Maps the app's controls onto nodes in workflow_api.json (the 'MiniMax - RefMod' workflow from the Hearmeman template).",
+    "A node is found either by ID ({ \"node\": \"173\" }) or by what it is ({ \"find\": { \"class_type\": \"...\" } } or { \"find\": { \"title\": \"...\" } }).",
+    "Selectors keep working if the template renumbers its nodes. Run `npm run inspect` to list every node in your workflow.",
+    "Remove a section the workflow doesn't have. Other workflows can use `loras` (separate loader nodes), `negativePrompt`, `referenceImages` and `referenceVideos`."
+  ],
+  "title": "MiniMax H3 · RefMod",
+  "prompt": {
+    "find": {
+      "title": "Your Prompt Here"
+    },
+    "input": "value"
+  },
+  "seed": {
+    "find": {
+      "class_type": "RandomNoise"
+    },
+    "input": "noise_seed"
+  },
+  "duration": {
+    "find": {
+      "title": "Float (duration)"
+    },
+    "input": "value",
+    "unit": "seconds",
+    "options": [
+      4,
+      5,
+      8,
+      10,
+      12,
+      15
+    ],
+    "default": 5
+  },
+  "aspectRatio": {
+    "find": {
+      "class_type": "ResolutionSelector"
+    },
+    "input": "aspect_ratio",
+    "default": "16:9 (Widescreen)"
+  },
+  "powerLora": {
+    "find": {
+      "class_type": "Power Lora Loader (rgthree)"
+    },
+    "max": 8
+  },
+  "refMods": {
+    "find": {
+      "class_type": "MiniMaxH3RefModsLoader"
+    },
+    "slots": 8,
+    "modInput": "mod_{n}",
+    "strengthInput": "strength_{n}",
+    "none": "(none)"
+  }
+}
